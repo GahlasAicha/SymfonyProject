@@ -43,4 +43,14 @@ symfony console doctrine:migrations:migrate
 -----Pour verifier :: symfony console doctrine:schema:update --dump-sql
 
 
-        
+      
+
+****Question 3
+on doit deja installer Faker :
+symfony composer require fakerphp/faker
+
+symfony composer require orm-fixtures --dev
+Pour créer une fixture : symfony console make:fixture
+apres je modifie AteliersFixtures 
+apres
+Pour exécuter une fixture : symfony console doctrine:fixtures:load
