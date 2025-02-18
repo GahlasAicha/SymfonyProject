@@ -65,3 +65,7 @@ apresje vais creer/modifier la vue pour l'affichage
 Création d’un CRUD :
 symfony console make:crud Atelier
 symfony console doctrine:migrations:migrate
+
+***question 5 :
+J'ai ajouté une barre de navigation réactive utilisant Bootstrap. Elle s'adapte aux différentes tailles d'écrans et permet aux utilisateurs de naviguer entre les pages principales de l'application. Le design a été amélioré en utilisant les classes de
+Bootstrap pour offrir une interface moderne et élégante.
