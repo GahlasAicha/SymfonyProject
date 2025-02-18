@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue sur l'Atelier{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="card shadow-lg rounded-lg">
+            <div class="card-header bg-primary text-white text-center">
+                <h2 class="mb-0">Bienvenue dans l'Atelier 🎨</h2>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-info text-center">
+                    <p>Les fichiers utilisés :</p>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <strong>Contrôleur :</strong>
+                            <code>/src/Controller/AtelierControleurController.php</code>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Template :</strong>
+                            <code>/templates/atelier_controleur/index.html.twig</code>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="container mt-5">
+                    <h2 class="text-center text-primary">Liste des Ateliers</h2>
+
+                    {% for atelier in ateliers %}
+                        <div class="card my-3 shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ atelier.nom }}</h5>
+                                <p class="card-text">{{ atelier.description }}</p>
+                            </div>
+                        </div>
+                    {% else %}
+                        <p class="text-center text-muted">Aucun atelier disponible.</p>
+                    {% endfor %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

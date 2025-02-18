@@ -31,7 +31,8 @@ Dans assets/app.js, mettre
 
 
 
-***QUESTION2 
+***QUESTION2
+
 je me deplcace vers le projet et je cree l'entite
 symfony console make:entity Atelier
   creeation de la base des données
@@ -42,8 +43,7 @@ creattion de la table
 symfony console doctrine:migrations:migrate 
 -----Pour verifier :: symfony console doctrine:schema:update --dump-sql
 
-
-      
+  
 
 ****Question 3
 on doit deja installer Faker :
@@ -54,3 +54,9 @@ Pour créer une fixture : symfony console make:fixture
 apres je modifie AteliersFixtures 
 apres
 Pour exécuter une fixture : symfony console doctrine:fixtures:load
+
+concenrnant le controleur :
+symfony console make:controller AtelierControleur
+apres j'ai modifier AtelierController.php
+apresje vais creer/modifier la vue pour l'affichage 
+    
