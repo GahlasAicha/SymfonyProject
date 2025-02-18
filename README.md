@@ -69,3 +69,14 @@ symfony console doctrine:migrations:migrate
 ***question 5 :
 J'ai ajouté une barre de navigation réactive utilisant Bootstrap. Elle s'adapte aux différentes tailles d'écrans et permet aux utilisateurs de naviguer entre les pages principales de l'application. Le design a été amélioré en utilisant les classes de
 Bootstrap pour offrir une interface moderne et élégante.
+
+*** question6:
+mise a jour del'entite Atelier  (ajout d'un champ descriptionHtml)
+miseajour de la base de données:
+symfony console make:migration
+symfony console  doctrine:migrations:migrate
+on installe   la bibliotheque cebe/markdown via composer
+symfony composer require cebe/markdown "~1.2.0"
+on modifie le controleur : lamethode edit , show
+affichae de la descriotion en html .twig 
+AtelierType.php modification 

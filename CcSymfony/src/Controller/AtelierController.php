@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use cebe\markdown\Markdown;
 use App\Entity\Atelier;
 use App\Form\AtelierType;
 use App\Repository\AtelierRepository;
@@ -30,6 +31,9 @@ final class AtelierController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $parser = new Markdown();
+            $atelier->setDescriptionHtml($parser->parse($atelier->getDescription()));
+
             $entityManager->persist($atelier);
             $entityManager->flush();
 
@@ -45,8 +49,12 @@ final class AtelierController extends AbstractController
     #[Route('/{id}', name: 'app_atelier_show', methods: ['GET'])]
     public function show(Atelier $atelier): Response
     {
+        //convertir la description de markdown a html
+        $parser = new Markdown();
+        $atelierDescriptionHtml = $parser->parse($atelier->getDescription());
         return $this->render('atelier/show.html.twig', [
             'atelier' => $atelier,
+            'atelierDescriptionHtml' => $atelierDescriptionHtml,
         ]);
     }
 
@@ -57,6 +65,9 @@ final class AtelierController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $parser = new Markdown();
+            $atelier->setDescriptionHtml($parser->parse($atelier->getDescription()));
+
             $entityManager->flush();
 
             return $this->redirectToRoute('app_atelier_index', [], Response::HTTP_SEE_OTHER);

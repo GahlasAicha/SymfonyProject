@@ -17,12 +17,15 @@
             </tr>
             <tr>
                 <th>Description</th>
-                <td>{{ atelier.description }}</td>
+                <td>
+                    {# Afficher la description en HTML après conversion Markdown #}
+                    <div>{{ atelier.descriptionHtml|raw }}</div>
+                </td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_atelier_index') }}">back to list</a>
+    <a href="{{ path('app_atelier_index') }}">Ratour a la liste </a>
 
     <a href="{{ path('app_atelier_edit', {'id': atelier.id}) }}">edit</a>
 

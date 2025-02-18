@@ -20,6 +20,8 @@ class Atelier
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
+    #[ORM\Column(type:'text',nullable: true)]
+    private $descriptionHtml;
     public function getId(): ?int
     {
         return $this->id;
@@ -45,6 +47,17 @@ class Atelier
     public function setDescription(string $description): static
     {
         $this->description = $description;
+
+        return $this;
+    }
+    public function getDescriptionHtml(): ?string
+    {
+        return $this->descriptionHtml;
+    }
+
+    public function setDescriptionHtml(?string $descriptionHtml): self
+    {
+        $this->descriptionHtml = $descriptionHtml;
 
         return $this;
     }
