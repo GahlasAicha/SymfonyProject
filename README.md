@@ -58,5 +58,10 @@ Pour exécuter une fixture : symfony console doctrine:fixtures:load
 concenrnant le controleur :
 symfony console make:controller AtelierControleur
 apres j'ai modifier AtelierController.php
-apresje vais creer/modifier la vue pour l'affichage 
-    
+apresje vais creer/modifier la vue pour l'affichage
+
+
+*****Question 4
+Création d’un CRUD :
+symfony console make:crud Atelier
+symfony console doctrine:migrations:migrate
