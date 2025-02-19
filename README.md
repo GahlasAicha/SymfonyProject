@@ -80,3 +80,33 @@ symfony composer require cebe/markdown "~1.2.0"
 on modifie le controleur : lamethode edit , show
 affichae de la descriotion en html .twig 
 AtelierType.php modification 
+
+
+**** QUestion 7 
+on va creer l'entité User :
+symfony console make:user
+symfony console make:entity User ( pour les parametres)
+
+ on va modfifier l'entite user.php
+ apres security.yaml 
+access_control:
+- { path: ^/admin, roles: ROLE_INSTRUCTEUR }
+
+ symfony console make:migration
+ symfony console doctrine:migrations:migrate
+
+
+on va lui associer un sys d'authentification
+symfony console make:auth
+
+on gener un fonrmulaire en utilisant la command
+symfony console make:registration-form
+symfony console make:migration
+symfony console doctrine:migrations:migrate
+
+
+
+
+commandes supplémentaires : 
+pour verifier que la route existe : symfony console debug:router
+pour vider le cache :symfony console cache:clear

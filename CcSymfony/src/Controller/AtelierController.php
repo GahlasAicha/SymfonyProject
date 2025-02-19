@@ -52,9 +52,14 @@ final class AtelierController extends AbstractController
         //convertir la description de markdown a html
         $parser = new Markdown();
         $atelierDescriptionHtml = $parser->parse($atelier->getDescription());
+        if (!$atelier) {
+            throw $this->createNotFoundException('Atelier non trouvé.');
+        }
         return $this->render('atelier/show.html.twig', [
+
             'atelier' => $atelier,
             'atelierDescriptionHtml' => $atelierDescriptionHtml,
+
         ]);
     }
 
