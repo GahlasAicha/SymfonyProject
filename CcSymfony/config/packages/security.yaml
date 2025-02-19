@@ -20,6 +20,7 @@ security:
             custom_authenticator: App\Security\AppCustomAuthAuthenticator
             logout:
                 path: app_logout
+                target: /login
                 # where to redirect after logout
                 # target: app_any_route
 
