@@ -119,3 +119,12 @@ pour vider le cache :symfony console cache:clear
 -  symfony console make:migration
    symfony console doctrine:migrations:migrate
 - Pour exécuter une fixture : symfony console doctrine:fixtures:load
+
+## Question 9
+- **Contrôle d'accès** : Seuls les utilisateurs ayant le rôle `ROLE_INSTRUCTEUR` peuvent accéder à la page de création d'un atelier. Cette vérification est effectuée avec la méthode `denyAccessUnlessGranted`.
+- **Association de l'instructeur à l'atelier** : Lors de la création d'un atelier, l'instructeur connecté est automatiquement assigné comme l'auteur de l'atelier. Cela est fait en récupérant l'utilisateur connecté via `$this->getUser()`
+- et en l'assignant à l'atelier via `setInstructeur()`.
+### Fichiers modifiés
+
+- **Controller** : `AtelierController.php` — Méthode `new()` mise à jour pour gérer l'instructeur connecté.
+- **Template** : `new.html.twig` — Affichage de l'instructeur connecté.

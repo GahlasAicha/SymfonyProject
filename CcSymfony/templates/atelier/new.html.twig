@@ -5,7 +5,10 @@
 {% block body %}
     <h1>Create new Atelier</h1>
 
+    {# Affichage de l'instructeur connecté #}
+    <p><strong>Instructeur connecté:</strong> {{ app.user.email }}</p>
+
     {{ include('atelier/_form.html.twig') }}
 
-    <a href="{{ path('app_atelier_index') }}">back to list</a>
+    <a href="{{ path('app_atelier_index') }}">Back to list</a>
 {% endblock %}

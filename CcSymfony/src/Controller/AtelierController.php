@@ -26,11 +26,22 @@ final class AtelierController extends AbstractController
     #[Route('/new', name: 'app_atelier_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+
+        // l'utilisateur est un instructeur
+        $this->denyAccessUnlessGranted('ROLE_INSTRUCTEUR');
+
         $atelier = new Atelier();
         $form = $this->createForm(AtelierType::class, $atelier);
-        $form->handleRequest($request);
 
+
+        $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // Associer l'instructeur connecté à l'atelier
+            $instructeur = $this->getUser(); // L'utilisateur connecté
+            $atelier->setInstructeur($instructeur); // L'instructeur devient l'auteur de l'atelier
+
+
             $parser = new Markdown();
             $atelier->setDescriptionHtml($parser->parse($atelier->getDescription()));
 
@@ -42,7 +53,7 @@ final class AtelierController extends AbstractController
 
         return $this->render('atelier/new.html.twig', [
             'atelier' => $atelier,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 

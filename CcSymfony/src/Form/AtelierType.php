@@ -23,6 +23,7 @@ class AtelierType extends AbstractType
                     'rows' => 6,
                 ],
             ])
+            ->add('instructeur', TextType::class, ['disabled' => true])
         ;
     }
 
