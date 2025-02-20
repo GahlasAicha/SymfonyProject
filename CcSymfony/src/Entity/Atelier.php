@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Entity;
-
+use App\Entity\User;
 use App\Repository\AtelierRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -27,6 +27,9 @@ class Atelier
         return $this->id;
     }
 
+
+    #[ORM\ManyToOne( inversedBy: "ateliers")]
+    private ?User $instructeur = null;
     public function getNom(): ?string
     {
         return $this->nom;
@@ -58,6 +61,16 @@ class Atelier
     public function setDescriptionHtml(?string $descriptionHtml): self
     {
         $this->descriptionHtml = $descriptionHtml;
+
+        return $this;
+    }
+    public function getInstructeur(): ?User
+    {
+        return $this->instructeur;
+    }
+    public function setInstructeur(?User $instructeur): self
+    {
+        $this->instructeur = $instructeur;
 
         return $this;
     }

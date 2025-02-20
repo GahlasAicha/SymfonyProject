@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -41,11 +43,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private bool $isVerified = false;
+    // Déclaration de la relation OneToMany avec l'entité Atelier
+    #[ORM\OneToMany(targetEntity: Atelier::class, mappedBy: 'instructeur')]
+    private Collection $ateliers;
 
     public function __construct()
     {
-        $this->roles = ['ROLE_INSTRUCTEUR'];
+        $this->ateliers = new ArrayCollection();
     }
+
 
 
     public function getId(): ?int
@@ -83,8 +89,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+
+        $roles[] = 'ROLE_INSTRUCTEUR';
 
         return array_unique($roles);
     }
@@ -158,4 +164,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+    /**
+     * @return Collection<int, Atelier>
+     */
+    public function getAteliers(): Collection
+    {
+        return $this->ateliers;
+    }
+    public function addAtelier(Atelier $atelier): static
+    {
+        if (!$this->ateliers->contains($atelier)) {
+            $this->ateliers->add($atelier);
+            $atelier->setInstructeur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAtelier(Atelier $atelier): static
+    {
+        if ($this->ateliers->removeElement($atelier)) {
+            // set the owning side to null (unless already changed)
+            if ($atelier->getInstructeur() === $this) {
+                $atelier->setInstructeur(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

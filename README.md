@@ -7,7 +7,7 @@
 - MIMOUN Ali 
 
 ## Commandes utilisées 
-*** QUESTION 1 :
+## QUESTION 1 :
           docker-compose build
           docker-compose up -d
           docker ps
@@ -31,7 +31,7 @@ Dans assets/app.js, mettre
 
 
 
-***QUESTION2
+## QUESTION2
 
 je me deplcace vers le projet et je cree l'entite
 symfony console make:entity Atelier
@@ -45,7 +45,7 @@ symfony console doctrine:migrations:migrate
 
   
 
-****Question 3
+## Question 3
 on doit deja installer Faker :
 symfony composer require fakerphp/faker
 
@@ -61,16 +61,16 @@ apres j'ai modifier AtelierController.php
 apresje vais creer/modifier la vue pour l'affichage
 
 
-*****Question 4
+## Question 4
 Création d’un CRUD :
 symfony console make:crud Atelier
 symfony console doctrine:migrations:migrate
 
-***question 5 :
+## question 5 :
 J'ai ajouté une barre de navigation réactive utilisant Bootstrap. Elle s'adapte aux différentes tailles d'écrans et permet aux utilisateurs de naviguer entre les pages principales de l'application. Le design a été amélioré en utilisant les classes de
 Bootstrap pour offrir une interface moderne et élégante.
 
-*** question6:
+## question6:
 mise a jour del'entite Atelier  (ajout d'un champ descriptionHtml)
 miseajour de la base de données:
 symfony console make:migration
@@ -82,7 +82,7 @@ affichae de la descriotion en html .twig
 AtelierType.php modification 
 
 
-**** QUestion 7 
+## QUestion 7 
 on va creer l'entité User :
 symfony console make:user
 symfony console make:entity User ( pour les parametres)
@@ -110,3 +110,12 @@ symfony console doctrine:migrations:migrate
 commandes supplémentaires : 
 pour verifier que la route existe : symfony console debug:router
 pour vider le cache :symfony console cache:clear
+
+## Question 8
+- Ajout d'une relation ManyToOne entre `Atelier` et `User`.
+- Modification des Fixtures pour associer chaque atelier à un instructeur unique.
+- Le mot de passe des instructeurs est "secret".
+
+-  symfony console make:migration
+   symfony console doctrine:migrations:migrate
+- Pour exécuter une fixture : symfony console doctrine:fixtures:load
